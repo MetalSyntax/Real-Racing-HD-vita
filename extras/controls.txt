@@ -1,0 +1,20 @@
+# Real Racing HD (PS Vita) -- controls. Edit on the memory card: ux0:data/realracinghd/controls.txt
+# Buttons press the iPad touch screen at "x,y" (landscape, 1024 x 768, origin top-left) or "none".
+# Steering = left stick X or D-pad left/right (sent to the game as accelerometer tilt).
+# SELECT toggles 4:3 centered / stretched picture (remembered in saves/vita_settings.txt).
+
+CROSS    = 900,650   # accelerate (bottom right)
+R        = 900,650   # accelerate
+SQUARE   = 124,650   # brake (bottom left)
+L        = 124,650   # brake
+START    = 980,40    # pause (top right)
+CIRCLE   = 60,40     # back (top left)
+TRIANGLE = none
+UP       = none
+DOWN     = none
+
+DEADZONE      = 10    # left stick dead zone (0..100, of 128)
+STEER_MAX_DEG = 40    # tilt sent at full stick
+STEER_INVERT  = 0     # 1 if steering goes the wrong way
+TILT_BACK     = 0.5   # resting tilt toward the player (0..0.95)
+ROTATE_180    = 1     # 0 if the picture is upside down (touch follows the picture)

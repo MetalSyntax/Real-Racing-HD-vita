@@ -1,0 +1,63 @@
+# macOS metadata
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# iOS IPA / App original y extracción -- nunca commitear el juego (anti-DMCA)
+*.ipa
+*.zip
+*.app/
+Payload/
+game_app
+game_app/
+/realracinghd_extract/
+rebase.bin
+
+# Assets del juego montados para pruebas
+ux0_data/
+assets/
+
+# Build artifacts
+# (anclados a la raíz: un `Makefile` suelto también excluiría vendor/vitaGL/Makefile)
+/build/
+/CMakeCache.txt
+/CMakeFiles/
+/Makefile
+/cmake_install.cmake
+vendor/vitaGL/libvitaGL.a
+vendor/vitaGL/**/*.o
+*.elf
+*.velf
+*.self
+eboot.bin
+*.vpk
+compile_commands.json
+
+# Debugging en consola real
+/logs/
+*.log
+*.psp2dmp
+psp2core-*
+
+# Python
+__pycache__/
+*.pyc
+
+# Config local del toolkit (contiene IP de tu Vita)
+.psvita-toolkit.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+cmake-build-*/
+
+# LiveArea con arte del juego (tools/make_livearea.py)
+extras/livearea_game/
+
+# Pseudo-C de Ghidra (derivado del binario original)
+decompiled/RealRacingHD_armv7/
+
+# Capturas de hosttest (arte del juego)
+docs/hosttest/*.png

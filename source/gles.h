@@ -19,6 +19,9 @@ int gles_screen_to_view(int sx, int sy, float *vx, float *vy);
 /** @brief Turns the landscape picture (and touch mapping) 180 degrees more (controls.txt ROTATE_180). */
 void gles_set_rotate180(int on);
 
+/** @brief Multiplier for glPolygonOffsetx units (16-bit iPad depth -> DF32M; controls.txt DEPTH_BIAS). */
+void gles_set_depth_bias_scale(float s);
+
 /** @brief Maps an iPad landscape point (0..1024 x 0..768, as the player sees it) to EAGLView points. */
 void gles_landscape_to_view(float lx, float ly, float *vx, float *vy);
 

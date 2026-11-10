@@ -95,6 +95,8 @@ static void load_controls(void) {
             tilt_back = strtof(val, NULL);
         else if (!strcasecmp(key, "ROTATE_180"))
             gles_set_rotate180(atoi(val));
+        else if (!strcasecmp(key, "DEPTH_BIAS"))
+            gles_set_depth_bias_scale(strtof(val, NULL));
         else
             for (int i = 0; i < NBUTTONS; i++)
                 if (!strcasecmp(key, buttons[i].name)) {

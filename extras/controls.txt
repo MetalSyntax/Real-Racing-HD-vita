@@ -18,3 +18,4 @@ STEER_MAX_DEG = 40    # tilt sent at full stick
 STEER_INVERT  = 0     # 1 if steering goes the wrong way
 TILT_BACK     = 0.5   # resting tilt toward the player (0..0.95)
 ROTATE_180    = 1     # 0 if the picture is upside down (touch follows the picture)
+DEPTH_BIAS    = 256   # car shadow depth offset scale (raise if the shadow is jagged, lower if it shows through)

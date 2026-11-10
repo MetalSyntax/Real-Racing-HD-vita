@@ -86,7 +86,8 @@ Physical buttons are translated into touches on the game's own on-screen buttons
 ## Known Issues
 
 - **Long first boot**: the one-time `res/` migration takes a few minutes. After that, boot to menu takes ~30 s.
-- **Car shadow**: a small graphical glitch in the car shadow during races.
+- **Car shadow (under investigation)**: the shadow under the cars shows up as jagged black spikes on the road (depth fighting with the track). The game's depth offset was tuned for the iPad's 16-bit depth buffer; this build scales it for the Vita (`DEPTH_BIAS` in `controls.txt`, default 256), but that does not fix it yet.
+- **Car edges**: green/cyan speckles on the edges of some cars.
 - **Not available**: custom liveries from the photo library and iPod music selection are stubbed.
 - **Online features disabled**: Cloudcell leaderboards, Bonjour multiplayer and Game Center are bypassed by design.
 - **Crash dumps** are written by the system to `ux0:data/` (not to the game folder). The loader also logs a `[CRASH]` line with Mach-O offsets in the run's log.

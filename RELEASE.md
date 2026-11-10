@@ -73,6 +73,7 @@ Touch points, dead zone, steering angle and inversion can be edited in `ux0:data
 - **Audio**: double free in `BackgroundTrackMgr::Teardown` (AudioFileID closed twice) → live-handle table in `coreaudio.c`.
 - **Audio**: ~40 s freeze when entering a race while the MP3 playlist was scanned with unbuffered reads → MP3s are read through a 64 KB buffered `FILE*`.
 - **Controls**: steering direction corrected for the default `STEER_INVERT = 0`.
+- **Graphics**: `glPolygonOffsetx` units are scaled from 16-bit to float depth (`DEPTH_BIAS`, logged as `[GL] glPolygonOffsetx`) as a first step on the car shadow.
 - **Debugging**: kubridge exception handler logs `[CRASH]` with Mach-O offsets, registers and a stack scan; fixed the log thread priority, which had left the console logs empty.
 - **Install**: `rebase.bin` is embedded in the VPK, with an executable check and a boot dialog for missing files.
 
@@ -81,7 +82,8 @@ Touch points, dead zone, steering angle and inversion can be edited in `ux0:data
 ## ⚠️ Known Issues
 
 - One-time `res/` migration on first boot takes a few minutes.
-- Small graphical glitch in the car shadow during races.
+- **Car shadow (under investigation)**: jagged black spikes on the road under the cars (depth fighting with the track). `DEPTH_BIAS` in `controls.txt` scales the game's depth offset; it does not fix it yet.
+- Green/cyan speckles on the edges of some cars.
 - The race-entry freeze fix and the steering direction fix are in this build but have not been confirmed on console yet.
 - Online features (Cloudcell leaderboards, Bonjour multiplayer, Game Center), photo-library liveries and iPod music selection are disabled.
 - No trophies yet.

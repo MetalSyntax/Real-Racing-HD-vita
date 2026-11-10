@@ -54,6 +54,19 @@ static void dst_rect(int *x, int *w) {
 static int rotate180 = 1;
 void gles_set_rotate180(int on) { rotate180 = on; }
 
+// The game tunes glPolygonOffset units (-64, car shadow decal) for the iPad's GL_DEPTH_COMPONENT16; vitaGL's
+// DF32M depth has ~256x finer units, so the shadow z-fights the road. controls.txt DEPTH_BIAS overrides.
+static float depth_bias_scale = 256.0f;
+void gles_set_depth_bias_scale(float s) { depth_bias_scale = s; }
+static void g_glPolygonOffsetx(GLfixed factor, GLfixed units) {
+    float f = factor / 65536.0f, u = units / 65536.0f * depth_bias_scale;
+    static float last_u = 1e9f;
+    if (u != last_u && u != 0.0f) // logs each new non-zero bias once (shadow decal check)
+        l_info("[GL] glPolygonOffsetx(%.0f, %.0f) -> factor %.0f units %.0f (DEPTH_BIAS %.0f)",
+               factor / 65536.0f, units / 65536.0f, f, u, depth_bias_scale), last_u = u;
+    glPolygonOffset(f, u);
+}
+
 static void land_to_view(float lx, float ly, float *px, float *py) {
     uint32_t o = uikit_orientation();
     if (FB_W > FB_H || (o != 3 && o != 4)) {
@@ -883,7 +896,7 @@ const import_entry gles_imports[] = {
     F(glGenerateMipmapOES, glGenerateMipmap), F(glBlendEquationOES, glBlendEquation),
     F(glMapBufferOES, glMapBuffer), F(glUnmapBufferOES, glUnmapBuffer),
     // Real Racing HD extras (fixed-point variants implemented by vitaGL)
-    D(glAlphaFuncx), D(glFogx), D(glLightxv), D(glMultMatrixx), D(glPolygonOffsetx),
+    D(glAlphaFuncx), D(glFogx), D(glLightxv), D(glMultMatrixx), F(glPolygonOffsetx, g_glPolygonOffsetx),
     F(glGetTexEnvfv, g_glGetTexEnvfv),
 };
 const int gles_imports_count = sizeof(gles_imports) / sizeof(gles_imports[0]);
